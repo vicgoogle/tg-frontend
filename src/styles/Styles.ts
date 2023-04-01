@@ -90,16 +90,46 @@ export const FormDiv = styled.div`
   margin-bottom: 6vh;
 `;
 
-export const Modal = styled.div`
+export const EditDiv = styled.div`
+  border-radius: 3%;
   height: fit-content;
-  width: 45%;
   position: fixed;
-  top: auto;
-  bottom: auto;
-  left: auto;
-  right: auto;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
   color: black;
-  background-color: black;
+  background-color: white;
+`;
+
+export const Modal = styled.div`
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center; /* aligns on vertical for column */
+  align-items: center;
+`;
+
+export const ScreenDiv = styled.div`
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center; /* aligns on vertical for column */
+  align-items: center;
 `;
 
 export const SecDiv = styled.div`
@@ -151,6 +181,15 @@ export const Subtitle = styled.p`
   flex-direction: column;
 `;
 
+export const TitleEdit = styled.p`
+  font-size: 24px;
+  width: fit-content;
+  margin-top: 1vh;
+
+  display: flex;
+  flex-direction: column;
+`;
+
 export const ListButtonDiv = styled.div`
   height: fit-content;
   width: fit-content;
@@ -160,4 +199,11 @@ export const ListButtonDiv = styled.div`
   flex-direction: row;
   color: white;
   padding-right: 0;
+`;
+export const EditButtonDiv = styled.div`
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
+  color: white;
 `;

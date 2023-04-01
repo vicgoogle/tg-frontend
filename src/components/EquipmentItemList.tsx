@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Hr, ItemDiv, Subtitle, ListButtonDiv, Modal } from "../styles/Styles";
 import Button from "@mui/material/Button";
 import api from "@/services/api";
@@ -10,24 +10,18 @@ export default function EquipmentItemList(
   priceEquipment: String,
   nameClient: String
 ) {
+  const [aaa, setAaa] = useState(false);
   function deleteRent() {
     api
       .delete("/equipment/delete/" + id)
       .then(() => alert("Item deletado com sucesso!"))
       .catch((res) => alert(res.response.data.message));
   }
-  function openModal() {
-    () => {
-      <>
-        <Modal>aaaaaaaaaaaaaaaaaa</Modal>
-      </>;
-    };
-  }
   return (
     <ItemDiv>
       <Subtitle>Nome do equipamento: {nameEquipment}</Subtitle>
       <ListButtonDiv>
-        <Button onClick={() => openModal()} variant="outlined" size="small">
+        <Button onClick={() => setAaa(true)} variant="outlined" size="small">
           Editar
         </Button>
         <Button
@@ -43,6 +37,7 @@ export default function EquipmentItemList(
       <p>Tipo do equipamento: {typeEquipment}</p>
       <p>Preço: {priceEquipment}</p>
       <p>Nome do Cliente: {nameClient}</p>
+      {aaa ? <Modal /> : null}
       <Hr />
     </ItemDiv>
   );
