@@ -14,7 +14,7 @@ import { TextField } from "@mui/material";
 import api from "../services/api";
 import { resolve } from "path/win32";
 
-export default function ClientCreation() {
+export default function ClientCreation({ setScreenNumber }: ScreenNumberInterface) {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [address, setAddress] = useState("");
@@ -242,6 +242,19 @@ export default function ClientCreation() {
         variant="contained"
       >
         Enviar
+      </Button>
+      <Button
+        style={{
+          marginLeft: "1vh",
+          marginRight: "1vh",
+          marginBottom: "2vh",
+        }}
+        onClick={() => setScreenNumber(1)}
+        color="warning"
+        variant="outlined"
+        size="small"
+      >
+        Voltar
       </Button>
     </MainDiv>
   );

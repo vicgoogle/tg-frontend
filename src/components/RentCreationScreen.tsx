@@ -14,7 +14,7 @@ import { TextField } from "@mui/material";
 import api from "../services/api";
 import { resolve } from "path/win32";
 
-export default function RentCreationScreen() {
+export default function RentCreationScreen({ setScreenNumber }: ScreenNumberInterface) {
   const [nameEquipment, setNameEquipment] = useState("");
   const [nameEquipmentError, setNameEquipmentError] = useState(false);
   const [nameEquipmentErrorText, setNameEquipmentErrorText] = useState("");
@@ -100,6 +100,19 @@ export default function RentCreationScreen() {
         variant="contained"
       >
         Enviar
+      </Button>
+      <Button
+        style={{
+          marginLeft: "1vh",
+          marginRight: "1vh",
+          marginBottom: "2vh",
+        }}
+        onClick={() => setScreenNumber(1)}
+        color="warning"
+        variant="outlined"
+        size="small"
+      >
+        Voltar
       </Button>
     </MainDiv>
   );

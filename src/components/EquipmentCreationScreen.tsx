@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import api from "../services/api";
 
-export default function EquipmentCreationScreen() {
+export default function EquipmentCreationScreen({ setScreenNumber }: ScreenNumberInterface) {
   const [nameEquipment, setNameEquipment] = useState("");
   const [typeEquipment, setTypeEquipment] = useState("");
   const [priceEquipment, setPriceEquipment] = useState("");
@@ -143,6 +143,19 @@ export default function EquipmentCreationScreen() {
         variant="contained"
       >
         Enviar
+      </Button>
+      <Button
+        style={{
+          marginLeft: "1vh",
+          marginRight: "1vh",
+          marginBottom: "2vh",
+        }}
+        onClick={() => setScreenNumber(1)}
+        color="warning"
+        variant="outlined"
+        size="small"
+      >
+        Voltar
       </Button>
     </MainDiv>
   );

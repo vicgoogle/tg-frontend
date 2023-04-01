@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import {
-  Div,
   FormDiv,
-  Img,
   MainDiv,
-  SecDiv,
-  Subtitle,
   Title,
-  TitleForm,
 } from "../styles/Styles";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import api from "../services/api";
 
-export default function LoginScreen() {
+export default function LoginScreen({ setScreenNumber }: ScreenNumberInterface) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [emailErrorText, setEmailErrorText] = useState("");
   const [passwordErrorText, setPasswordErrorText] = useState("");
-  const [error, setError] = useState(false);
+  const [, setError] = useState(false);
 
   function post() {
     validate();
@@ -29,18 +24,7 @@ export default function LoginScreen() {
         email,
         password,
       })
-      .then(() => alert("Cliente cadastrado com sucesso"))
-      .catch((res) => alert(res.response.data.message));
-  }
-
-  function handleLogin() {
-    validate();
-    api
-      .post("/client/login", {
-        email,
-        password,
-      })
-      .then(() => alert("Cliente cadastrado com sucesso"))
+      .then(() => setScreenNumber(1))
       .catch((res) => alert(res.response.data.message));
   }
 

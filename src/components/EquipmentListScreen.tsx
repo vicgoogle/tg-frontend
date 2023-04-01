@@ -20,7 +20,7 @@ import ItemList from "./ItemList";
 import EquipmentItemList from "./EquipmentItemList";
 import { TextField } from "@mui/material";
 
-export default function EquipmentList(this: any) {
+export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface) {
   const [name, setName] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [idEquipment, setIdEquipment] = useState("");
@@ -223,6 +223,19 @@ export default function EquipmentList(this: any) {
       ) : null}
       <Title>Lista de Equipamentos</Title>
       <FormDiv>{listItems}</FormDiv>
+      <Button
+        style={{
+          marginLeft: "1vh",
+          marginRight: "1vh",
+          marginBottom: "2vh",
+        }}
+        onClick={() => setScreenNumber(1)}
+        color="warning"
+        variant="outlined"
+        size="small"
+      >
+        Voltar
+      </Button>
     </MainDiv>
   );
 }
