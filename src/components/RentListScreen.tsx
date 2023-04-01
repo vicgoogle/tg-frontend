@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { FormDiv, List, MainDiv, Title } from "../styles/Styles";
-import Button from "@mui/material/Button";
 import api from "../services/api";
 import ItemList from "./ItemList";
 
 export default function RentList() {
   const [name, setName] = useState([]);
 
-  function post() {
+  useEffect(() => {
     api
       .get("/rent/list")
       .then((res) => setName(res.data))
       .catch((res) => alert(res.response.data.message));
-  }
-
-  useEffect(() => {
-    post();
-  });
+  }, []);
 
   const listItems = name.map((d: any) => (
     <List key={d.nameEquipment}>

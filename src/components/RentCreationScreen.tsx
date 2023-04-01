@@ -14,7 +14,7 @@ import { TextField } from "@mui/material";
 import api from "../services/api";
 import { resolve } from "path/win32";
 
-export default function VolunteerScreen() {
+export default function RentCreationScreen() {
   const [nameEquipment, setNameEquipment] = useState("");
   const [nameEquipmentError, setNameEquipmentError] = useState(false);
   const [nameEquipmentErrorText, setNameEquipmentErrorText] = useState("");
@@ -29,7 +29,7 @@ export default function VolunteerScreen() {
         nameEquipment,
         rentTime,
       })
-      .then(() => alert("Cliente cadastrado com sucesso"))
+      .then(() => alert("Aluguel cadastrado com sucesso"))
       .catch((res) => alert(res.response.data.message));
   }
 
@@ -46,14 +46,14 @@ export default function VolunteerScreen() {
 
   return (
     <MainDiv>
-      <Title>Cadastro</Title>
+      <Title>Cadastro de Alugueis</Title>
       <FormDiv>
         <TextField
           style={{
+            marginTop: "5%",
             marginLeft: "auto",
             marginRight: "auto",
             marginBottom: "3%",
-            marginTop: "5%",
           }}
           id="outlined-basic"
           size="small"
@@ -65,6 +65,25 @@ export default function VolunteerScreen() {
           error={nameEquipmentError}
           helperText={nameEquipmentErrorText}
           label="Nome do equipamento"
+          variant="outlined"
+        />
+        <TextField
+          style={{
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: "3%",
+          }}
+          id="outlined-basic"
+          size="small"
+          onChange={(e) => {
+            setRentTimeError(false);
+            setRentTimeErrorText("");
+            setRentTime(e.target.value);
+          }}
+          error={rentTimeError}
+          helperText={rentTimeErrorText}
+          type="number"
+          label="Tempo de aluguel (meses)"
           variant="outlined"
         />
       </FormDiv>

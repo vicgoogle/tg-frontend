@@ -14,7 +14,7 @@ import { TextField } from "@mui/material";
 import api from "../services/api";
 import { resolve } from "path/win32";
 
-export default function VolunteerScreen() {
+export default function ClientCreation() {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [address, setAddress] = useState("");
@@ -94,7 +94,7 @@ export default function VolunteerScreen() {
 
   return (
     <MainDiv>
-      <Title>Cadastro</Title>
+      <Title>Cadastro de Clientes</Title>
       <FormDiv>
         <TextField
           style={{

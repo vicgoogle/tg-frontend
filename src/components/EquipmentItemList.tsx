@@ -4,13 +4,15 @@ import Button from "@mui/material/Button";
 import api from "@/services/api";
 
 export default function EquipmentItemList(
+  id: String,
   nameEquipment: String,
-  rentTime: String,
-  id: String
+  typeEquipment: String,
+  priceEquipment: String,
+  nameClient: String
 ) {
   function deleteRent() {
     api
-      .delete("/rent/delete/" + id)
+      .delete("/equipment/delete/" + id)
       .then(() => alert("Item deletado com sucesso!"))
       .catch((res) => alert(res.response.data.message));
   }
@@ -38,7 +40,9 @@ export default function EquipmentItemList(
           Excluir
         </Button>
       </ListButtonDiv>
-      <p>Tempo de Aluguel: {rentTime} meses</p>
+      <p>Tipo do equipamento: {typeEquipment}</p>
+      <p>Preço: {priceEquipment}</p>
+      <p>Nome do Cliente: {nameClient}</p>
       <Hr />
     </ItemDiv>
   );

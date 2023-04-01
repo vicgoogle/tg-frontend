@@ -5,6 +5,9 @@ import ClientCreation from "../components/ClientCreation";
 import { Header, MainDiv, Option } from "../styles/Styles";
 import RentList from "@/components/RentListScreen";
 import LoginScreen from "@/components/LoginScreen";
+import EquipmentList from "@/components/EquipmentListScreen";
+import EquipmentCreationScreen from "@/components/EquipmentCreationScreen";
+import RentCreationScreen from "@/components/RentCreationScreen";
 
 export default function App() {
   const [color0, setColor0] = useState("grey");
@@ -16,7 +19,7 @@ export default function App() {
   const [color6, setColor6] = useState("white");
   const [color7, setColor7] = useState("white");
   const [screen0, setScreen0] = useState(true);
-  const [screen1, setScreen1] = useState(true);
+  const [screen1, setScreen1] = useState(false);
   const [screen2, setScreen2] = useState(false);
   const [screen3, setScreen3] = useState(false);
   const [screen4, setScreen4] = useState(false);
@@ -69,7 +72,7 @@ export default function App() {
             setColor1("grey");
           }}
         >
-          Home
+          Cadastro de Clientes
         </Option>
         <Option
           style={{ color: color2 }}
@@ -80,7 +83,7 @@ export default function App() {
             setColor2("grey");
           }}
         >
-          Voluntariado
+          Lista de Equipamentos
         </Option>
         <Option
           style={{ color: color3 }}
@@ -91,7 +94,7 @@ export default function App() {
             setColor3("grey");
           }}
         >
-          Cadeia produtiva sustentavel
+          Lista de Alugueis
         </Option>
         <Option
           style={{ color: color4 }}
@@ -102,7 +105,7 @@ export default function App() {
             setColor4("grey");
           }}
         >
-          ESG
+          Cadastro de Equipamentos
         </Option>
         <Option
           style={{ color: color5 }}
@@ -140,10 +143,10 @@ export default function App() {
       </Header>
       {screen0 ? <LoginScreen /> : null}
       {screen1 ? <ClientCreation /> : null}
-      {screen2 ? <RentList /> : null}
+      {screen2 ? <EquipmentList /> : null}
       {screen3 ? <RentList /> : null}
-      {screen4 ? <RentList /> : null}
-      {screen5 ? <RentList /> : null}
+      {screen4 ? <EquipmentCreationScreen /> : null}
+      {screen5 ? <RentCreationScreen /> : null}
       {screen6 ? <RentList /> : null}
     </MainDiv>
   );

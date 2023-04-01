@@ -90,6 +90,18 @@ export const FormDiv = styled.div`
   margin-bottom: 6vh;
 `;
 
+export const Modal = styled.div`
+  height: fit-content;
+  width: 45%;
+  position: fixed;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  color: black;
+  background-color: black;
+`;
+
 export const SecDiv = styled.div`
   height: fit-content;
   width: 100%;
