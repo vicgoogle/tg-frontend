@@ -18,8 +18,8 @@ export default function App() {
     <HomeScreen setScreenNumber={setScreenNumber} />,
     <ClientCreation setScreenNumber={setScreenNumber} />,
     <EquipmentList setScreenNumber={setScreenNumber} />,
-    <RentList setScreenNumber={setScreenNumber} />,
     <EquipmentCreationScreen setScreenNumber={setScreenNumber} />,
+    <RentList setScreenNumber={setScreenNumber} />,
     <RentCreationScreen setScreenNumber={setScreenNumber} />,
   ]
 

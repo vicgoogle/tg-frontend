@@ -181,7 +181,7 @@ export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface
                   marginRight: "1vh",
                   marginBottom: "2vh",
                 }}
-                onClick={() => setScreenNumber(1)}
+                onClick={() => setIsModalVisible(false)}
                 color="warning"
                 variant="outlined"
                 size="small"
@@ -196,14 +196,16 @@ export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface
       <FormDiv>{listItems}</FormDiv>
       <Button
         style={{
-          marginLeft: "1vh",
-          marginRight: "1vh",
-          marginBottom: "2vh",
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginBottom: "5%",
+          position: "static"
         }}
-        onClick={() => setScreenNumber(1)}
-        color="warning"
-        variant="outlined"
-        size="small"
+        onClick={() => {
+          setScreenNumber(1);
+        }}
+        size="large"
+        variant="contained"
       >
         Voltar
       </Button>

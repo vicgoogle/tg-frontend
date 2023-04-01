@@ -134,7 +134,7 @@ export default function EquipmentCreationScreen({ setScreenNumber }: ScreenNumbe
         style={{
           marginLeft: "auto",
           marginRight: "auto",
-          marginBottom: "5%",
+          marginBottom: "2%",
         }}
         onClick={() => {
           post();
@@ -146,14 +146,15 @@ export default function EquipmentCreationScreen({ setScreenNumber }: ScreenNumbe
       </Button>
       <Button
         style={{
-          marginLeft: "1vh",
-          marginRight: "1vh",
-          marginBottom: "2vh",
+          marginLeft: "auto",
+          marginRight: "auto",
+          marginBottom: "5%",
         }}
-        onClick={() => setScreenNumber(1)}
-        color="warning"
-        variant="outlined"
-        size="small"
+        onClick={() => {
+          setScreenNumber(1);
+        }}
+        size="large"
+        variant="contained"
       >
         Voltar
       </Button>

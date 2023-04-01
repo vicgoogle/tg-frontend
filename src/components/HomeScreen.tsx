@@ -20,10 +20,10 @@ export default function HomeScreen({ setScreenNumber }: ScreenNumberInterface) {
                 Lista de Equipamentos
             </ButtonPurple>
             <ButtonPurple startIcon={<MonetizationOnIcon />} onClick={() => { setScreenNumber(4) }}>
-                Lista de Aluguéis
+                Cadastro de Equipamentos
             </ButtonPurple>
             <ButtonPurple startIcon={<PlaylistAddIcon />} onClick={() => { setScreenNumber(5) }}>
-                Cadastro de Equipamentos
+                Lista de Aluguéis
             </ButtonPurple>
             <ButtonPurple startIcon={<MenuBookIcon />} onClick={() => { setScreenNumber(6) }}>
                 Cadastro de Alugueis
