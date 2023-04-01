@@ -37,17 +37,24 @@ export default function EquipmentList(this: any) {
   const [priceEquipmentErrorText, setPriceEquipmentErrorText] = useState("");
   const [nameClientErrorText, setNameClientErrorText] = useState("");
 
-  useEffect(() => {
+  function getList() {
     api
       .get("/equipment/list")
       .then((res) => setName(res.data))
       .catch((res) => alert(res.response.data.message));
+  }
+
+  useEffect(() => {
+    getList();
   }, []);
 
   function deleteRent(id: String) {
     api
       .delete("/equipment/delete/" + id)
-      .then(() => alert("Item deletado com sucesso!"))
+      .then(() => {
+        alert("Item deletado com sucesso!");
+        getList();
+      })
       .catch((res) => alert(res.response.data.message));
   }
   function updateRent() {
@@ -62,6 +69,7 @@ export default function EquipmentList(this: any) {
       .then(() => {
         alert("Equipamento cadastrado com sucesso");
         setIsModalVisible(false);
+        getList();
       })
       .catch((res) => alert(res.response.data.message));
   }
