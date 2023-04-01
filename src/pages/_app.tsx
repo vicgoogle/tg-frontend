@@ -2,18 +2,20 @@ import "../styles/globals.css";
 import React from "react";
 import { useState } from "react";
 import ClientCreation from "../components/ClientCreation";
-import RentCreationScreen from "../components/RentCreationScreen";
 import { Header, MainDiv, Option } from "../styles/Styles";
 import RentList from "@/components/RentListScreen";
+import LoginScreen from "@/components/LoginScreen";
 
 export default function App() {
-  const [color1, setColor1] = useState("grey");
+  const [color0, setColor0] = useState("grey");
+  const [color1, setColor1] = useState("white");
   const [color2, setColor2] = useState("white");
   const [color3, setColor3] = useState("white");
   const [color4, setColor4] = useState("white");
   const [color5, setColor5] = useState("white");
   const [color6, setColor6] = useState("white");
   const [color7, setColor7] = useState("white");
+  const [screen0, setScreen0] = useState(true);
   const [screen1, setScreen1] = useState(true);
   const [screen2, setScreen2] = useState(false);
   const [screen3, setScreen3] = useState(false);
@@ -21,8 +23,10 @@ export default function App() {
   const [screen5, setScreen5] = useState(false);
   const [screen6, setScreen6] = useState(false);
   const [screen7, setScreen7] = useState(false);
+  const [onLogin, setOnlogin] = useState(false);
 
   function resetAllColors(): void {
+    setColor0("white");
     setColor1("white");
     setColor2("white");
     setColor3("white");
@@ -32,6 +36,7 @@ export default function App() {
     setColor7("white");
   }
   function resetAllScreens(): void {
+    setScreen0(false);
     setScreen1(false);
     setScreen2(false);
     setScreen3(false);
@@ -44,6 +49,17 @@ export default function App() {
   return (
     <MainDiv>
       <Header>
+        <Option
+          style={{ color: color0 }}
+          onClick={() => {
+            resetAllColors();
+            resetAllScreens();
+            setScreen0(true);
+            setColor0("grey");
+          }}
+        >
+          Login
+        </Option>
         <Option
           style={{ color: color1 }}
           onClick={() => {
@@ -110,7 +126,19 @@ export default function App() {
         >
           Redes de trabalho
         </Option>
+        <Option
+          style={{ color: color7 }}
+          onClick={() => {
+            resetAllColors();
+            resetAllScreens();
+            setScreen7(true);
+            setColor7("grey");
+          }}
+        >
+          Lista de Equipamentos
+        </Option>
       </Header>
+      {screen0 ? <LoginScreen /> : null}
       {screen1 ? <ClientCreation /> : null}
       {screen2 ? <RentList /> : null}
       {screen3 ? <RentList /> : null}
