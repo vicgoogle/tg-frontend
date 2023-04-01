@@ -28,17 +28,24 @@ export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface
   const [nameEquipmentErrorText, setNameEquipmentErrorText] = useState("");
   const [rentTimeErrorText, setRentTimeErrorText] = useState("");
 
-  useEffect(() => {
+  function getList() {
     api
       .get("/rent/list")
       .then((res) => setName(res.data))
       .catch((res) => alert(res.response.data.message));
+  }
+
+  useEffect(() => {
+    getList();
   }, []);
 
   function deleteRent(id: String) {
     api
       .delete("/rent/delete/" + id)
-      .then(() => alert("Item deletado com sucesso!"))
+      .then(() => {
+        alert("Item deletado com sucesso!");
+        getList();
+      })
       .catch((res) => alert(res.response.data.message));
   }
   function updateRent() {
@@ -51,6 +58,7 @@ export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface
       .then(() => {
         alert("Aluguel atualizado com sucesso");
         setIsModalVisible(false);
+        getList();
       })
       .catch((res) => alert(res.response.data.message));
   }
