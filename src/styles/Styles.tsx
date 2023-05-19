@@ -14,15 +14,19 @@ export const Option = styled.p`
 `;
 
 export const MainDiv = styled.div`
-  background-image: linear-gradient(
-    to right bottom,
-    #b721ff,
-    #4979ff,
-    #00a3ff,
-    #00bfff,
-    #21d4fd
-  );
+  background-color: #0e0e0e;
   height: 140vh;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: white;
+`;
+
+export const FormLogDiv = styled.div`
+  background-color: #0e0e0e;
+  height: 100vh;
   width: 100%;
   align-items: center;
   display: flex;
@@ -30,14 +34,34 @@ export const MainDiv = styled.div`
   color: white;
 `;
 
+export const Link = styled.a`
+  color: blueviolet;
+  cursor: pointer;
+  :hover {
+    border-bottom: 1px solid blueviolet;
+  }
+`;
+
+export const FormMainDiv = styled.div`
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  color: white;
+`;
+
 export const ItemDiv = styled.div`
   height: fit-content;
   width: 100%;
+  background-color: #0e0e0e;
   align-items: left;
   top: 1vh;
   padding-left: 5px;
   padding-right: 5px;
   display: flex;
+  border-color: #ffffff;
+  color: white;
   flex-direction: column;
 `;
 
@@ -47,8 +71,7 @@ export const Hr = styled.hr`
   border-width: 1px;
   margin-top: 0;
   margin-bottom: 0;
-  border-style: dashed;
-  border-color: black;
+  border-color: #ffffff;
 `;
 
 export const List = styled.li`
@@ -85,6 +108,31 @@ export const FormDiv = styled.div`
   color: black;
   background-color: white;
   border-radius: 3%;
+  border-width: 2px;
+  border-style: dashed;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 6vh;
+
+  ::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+  /* Optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+    background: #ff0000;
+  }
+`;
+
+export const LogDiv = styled.div`
+  height: fit-content;
+  width: 45%;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  background-color: transparent;
+  border-radius: 3%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 6vh;
@@ -101,8 +149,16 @@ export const EditDiv = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  color: black;
-  background-color: white;
+  color: #ffffff;
+  background-color: #202020;
+  ::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+  /* Optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+    background: #ff0000;
+  }
 `;
 
 export const Modal = styled.div`
@@ -144,7 +200,7 @@ export const SecDiv = styled.div`
 `;
 
 export const Title = styled.p`
-  font-size: 10vh;
+  font-size: 6vh;
   font-style: italic;
   width: 100%;
   align-items: center;
@@ -152,6 +208,17 @@ export const Title = styled.p`
   display: flex;
   flex-direction: column;
   color: white;
+`;
+
+export const EquipmentTitle = styled.p`
+  font-size: 5vh;
+  font-style: italic;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
 `;
 
 export const TitleForm = styled.p`
@@ -168,8 +235,24 @@ export const TitleForm = styled.p`
 `;
 
 export const Img = styled.img`
-  margin-bottom: 10%;
-  margin-right: 3%;
+  width: 90%;
+  height: 5%;
+`;
+
+export const BackgroundImg = styled.img`
+  width: 68%;
+  height: 100%;
+`;
+
+export const ImageDiv = styled.div`
+  height: fit-content;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  padding-right: 0;
 `;
 
 export const Subtitle = styled.p`
@@ -194,6 +277,7 @@ export const ListButtonDiv = styled.div`
   height: fit-content;
   width: fit-content;
   align-items: flex-end;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: 0;
   flex-direction: row;

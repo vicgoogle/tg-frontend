@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import {
-  Div,
+  BackgroundImg,
+  EditButtonDiv,
   FormDiv,
-  Img,
+  FormLogDiv,
+  FormMainDiv,
+  ListButtonDiv,
+  LogDiv,
   MainDiv,
-  SecDiv,
-  Subtitle,
   Title,
-  TitleForm,
 } from "../styles/Styles";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import api from "../services/api";
-import { resolve } from "path/win32";
+import { client } from "./LoginScreen";
 
-export default function ClientCreation({ setScreenNumber }: ScreenNumberInterface) {
+export default function ClientCreation({
+  setScreenNumber,
+}: ScreenNumberInterface) {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [address, setAddress] = useState("");
@@ -93,170 +96,198 @@ export default function ClientCreation({ setScreenNumber }: ScreenNumberInterfac
   }
 
   return (
-    <MainDiv>
-      <Title>Cadastro de Clientes</Title>
-      <FormDiv>
-        <TextField
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "3%",
-            marginTop: "5%",
-          }}
-          id="outlined-basic"
-          size="small"
-          onChange={(e) => {
-            setNameError(false);
-            setNameErrorText("");
-            setName(e.target.value);
-          }}
-          error={nameError}
-          helperText={nameErrorText}
-          label="Nome"
-          variant="outlined"
-        />
-        <TextField
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "3%",
-          }}
-          id="outlined-basic"
-          size="small"
-          onChange={(e) => {
-            setCpfError(false);
-            setCpfErrorText("");
-            setCpf(e.target.value);
-          }}
-          error={cpfError}
-          helperText={cpfErrorText}
-          inputProps={{ maxLength: 11 }}
-          type="number"
-          label="CPF"
-          variant="outlined"
-        />
-        <TextField
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "3%",
-          }}
-          id="outlined-basic"
-          size="small"
-          onChange={(e) => {
-            setAddressError(false);
-            setAddressErrorText("");
-            setAddress(e.target.value);
-          }}
-          error={addressError}
-          helperText={addressErrorText}
-          label="Endereço"
-          variant="outlined"
-        />
-        <TextField
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "3%",
-          }}
-          id="outlined-basic"
-          size="small"
-          onChange={(e) => {
-            setBirthDateError(false);
-            setBirthDateErrorText("");
-            setBirthDate(e.target.value);
-          }}
-          error={birthDateError}
-          helperText={birthDateErrorText}
-          inputProps={{ maxLength: 10 }}
-          label="Data de nascimento"
-          variant="outlined"
-        />
-        <TextField
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "3%",
-          }}
-          id="outlined-basic"
-          size="small"
-          onChange={(e) => {
-            setPhoneError(false);
-            setPhoneErrorText("");
-            setPhone(e.target.value);
-          }}
-          error={phoneError}
-          helperText={phoneErrorText}
-          inputProps={{ maxLength: 11 }}
-          label="Telefone"
-          variant="outlined"
-        />
-        <TextField
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "3%",
-          }}
-          id="outlined-basic"
-          size="small"
-          onChange={(e) => {
-            setEmailError(false);
-            setEmailErrorText("");
-            setEmail(e.target.value);
-          }}
-          error={emailError}
-          helperText={emailErrorText}
-          label="E-mail"
-          variant="outlined"
-        />
-        <TextField
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "3%",
-          }}
-          id="outlined-basic"
-          size="small"
-          onChange={(e) => {
-            setPasswordError(false);
-            setPasswordErrorText("");
-            setPassword(e.target.value);
-          }}
-          error={passwordError}
-          type="password"
-          helperText={PasswordErrorText}
-          label="Senha"
-          variant="outlined"
-        />
-      </FormDiv>
-      <Button
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginBottom: "2%",
-        }}
-        onClick={() => {
-          post();
-        }}
-        size="large"
-        variant="contained"
-      >
-        Enviar
-      </Button>
-      <Button
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginBottom: "5%",
-        }}
-        onClick={() => {
-          setScreenNumber(1);
-        }}
-        size="large"
-        variant="contained"
-      >
-        Voltar
-      </Button>
-    </MainDiv>
+    <FormMainDiv>
+      <FormLogDiv>
+        <Title>Cadastro de Clientes</Title>
+        <LogDiv>
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "25%",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setNameError(false);
+              setNameErrorText("");
+              setName(e.target.value);
+            }}
+            error={nameError}
+            helperText={nameErrorText}
+            label="Nome"
+            variant="outlined"
+          />
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setCpfError(false);
+              setCpfErrorText("");
+              setCpf(e.target.value);
+            }}
+            error={cpfError}
+            helperText={cpfErrorText}
+            inputProps={{ maxLength: 11 }}
+            type="number"
+            label="CPF ou CNPJ"
+            variant="outlined"
+          />
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setAddressError(false);
+              setAddressErrorText("");
+              setAddress(e.target.value);
+            }}
+            error={addressError}
+            helperText={addressErrorText}
+            label="Endereço"
+            variant="outlined"
+          />
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setBirthDateError(false);
+              setBirthDateErrorText("");
+              setBirthDate(e.target.value);
+            }}
+            error={birthDateError}
+            helperText={birthDateErrorText}
+            inputProps={{ maxLength: 10 }}
+            label="Data de nascimento"
+            variant="outlined"
+          />
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setPhoneError(false);
+              setPhoneErrorText("");
+              setPhone(e.target.value);
+            }}
+            error={phoneError}
+            helperText={phoneErrorText}
+            inputProps={{ maxLength: 11 }}
+            label="Telefone"
+            variant="outlined"
+          />
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setEmailError(false);
+              setEmailErrorText("");
+              setEmail(e.target.value);
+            }}
+            error={emailError}
+            helperText={emailErrorText}
+            label="E-mail"
+            variant="outlined"
+          />
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setPasswordError(false);
+              setPasswordErrorText("");
+              setPassword(e.target.value);
+            }}
+            error={passwordError}
+            type="password"
+            helperText={PasswordErrorText}
+            label="Senha"
+            variant="outlined"
+          />
+          <EditButtonDiv>
+            <Button
+              style={{
+                marginLeft: "auto",
+                marginRight: "50px",
+                marginTop: "50px",
+                marginBottom: "8%",
+              }}
+              onClick={() => {
+                post();
+              }}
+              size="large"
+              variant="contained"
+            >
+              Enviar
+            </Button>
+            {client.data ? (
+              <Button
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginTop: "50px",
+                  marginBottom: "8%",
+                }}
+                onClick={() => {
+                  setScreenNumber(1);
+                }}
+                size="large"
+                variant="contained"
+              >
+                Voltar
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginTop: "50px",
+                  marginBottom: "8%",
+                }}
+                onClick={() => {
+                  setScreenNumber(0);
+                }}
+                size="large"
+                variant="contained"
+              >
+                Voltar
+              </Button>
+            )}
+          </EditButtonDiv>
+        </LogDiv>
+      </FormLogDiv>
+      <BackgroundImg
+        alt=" "
+        src="https://static.portaldaindustria.com.br/portaldaindustria/noticias/media/imagem_plugin/shutterstock_uiHrlzJ.jpg"
+      />
+    </FormMainDiv>
   );
 }

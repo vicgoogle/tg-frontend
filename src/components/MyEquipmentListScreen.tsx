@@ -18,9 +18,8 @@ import {
 } from "../styles/Styles";
 import Button from "@mui/material/Button";
 import api from "../services/api";
-import ItemList from "./ItemList";
-import EquipmentItemList from "./EquipmentItemList";
 import { TextField } from "@mui/material";
+import { client } from "./LoginScreen";
 
 export default function EquipmentList({
   setScreenNumber,
@@ -43,7 +42,7 @@ export default function EquipmentList({
 
   function getList() {
     api
-      .get("/equipment/list")
+      .get("/equipment/listByClient/" + client.data.id)
       .then((res) => setName(res.data))
       .catch((res) => alert(res.response.data.message));
   }
@@ -57,6 +56,15 @@ export default function EquipmentList({
       .delete("/equipment/delete/" + id)
       .then(() => {
         alert("Item deletado com sucesso!");
+        getList();
+      })
+      .catch((res) => alert(res.response.data.message));
+  }
+  function writeOffRent(id: String) {
+    api
+      .put("/equipment/writeOff/" + id)
+      .then((res) => {
+        alert(res.data.response);
         getList();
       })
       .catch((res) => alert(res.response.data.message));
@@ -80,48 +88,61 @@ export default function EquipmentList({
 
   const listItems = name.map((d: any) => (
     <List key={d.nameEquipment}>
-      {d.isRented ? null : (
-        <ItemDiv>
-          <Subtitle>Nome do equipamento: {d.nameEquipment}</Subtitle>
-          <ImageDiv>
-            <Img alt=" " src={d.photo} width="500" height="600" />
-          </ImageDiv>
-          <ListButtonDiv>
+      <ItemDiv>
+        <Subtitle>Nome do equipamento: {d.nameEquipment}</Subtitle>
+        <ImageDiv>
+          <Img alt=" " src={d.photo} width="500" height="600" />
+        </ImageDiv>
+        <ListButtonDiv>
+          {d.isRented ? null : (
             <Button
-              onClick={() => {
-                setIsModalVisible(true);
-                setIdEquipment(d.id);
-              }}
+              onClick={() => writeOffRent(d.id)}
               style={{
                 marginLeft: "1vh",
                 marginRight: "1vh",
                 position: "static",
               }}
+              color="success"
               variant="outlined"
               size="small"
             >
-              Editar
+              Dar Baixa
             </Button>
-            <Button
-              style={{
-                marginLeft: "1vh",
-                marginRight: "1vh",
-                position: "static",
-              }}
-              color="warning"
-              variant="outlined"
-              size="small"
-              onClick={() => deleteRent(d.id)}
-            >
-              Excluir
-            </Button>
-          </ListButtonDiv>
-          <p>Tipo do equipamento: {d.typeEquipment}</p>
-          <p>Preço: {d.priceEquipment}</p>
-          <p>Nome do Cliente: {d.nameClient}</p>
-          <Hr />
-        </ItemDiv>
-      )}
+          )}
+          <Button
+            onClick={() => {
+              setIsModalVisible(true);
+              setIdEquipment(d.id);
+            }}
+            style={{
+              marginLeft: "1vh",
+              marginRight: "1vh",
+              position: "static",
+            }}
+            variant="outlined"
+            size="small"
+          >
+            Editar
+          </Button>
+          <Button
+            style={{
+              marginLeft: "1vh",
+              marginRight: "1vh",
+              position: "static",
+            }}
+            color="warning"
+            variant="outlined"
+            size="small"
+            onClick={() => deleteRent(d.id)}
+          >
+            Excluir
+          </Button>
+        </ListButtonDiv>
+        <p>Tipo do equipamento: {d.typeEquipment}</p>
+        <p>Preço: {d.priceEquipment}</p>
+        <p>Nome do Cliente: {d.nameClient}</p>
+        <Hr />
+      </ItemDiv>
     </List>
   ));
 
@@ -238,7 +259,7 @@ export default function EquipmentList({
           </EditDiv>
         </ScreenDiv>
       ) : null}
-      <Title>Lista de Equipamentos</Title>
+      <Title>Meus equipamentos</Title>
       <FormDiv>{listItems}</FormDiv>
       <Button
         style={{

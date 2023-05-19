@@ -16,22 +16,25 @@ import {
 import Button from "@mui/material/Button";
 import api from "../services/api";
 import { TextField } from "@mui/material";
+import { client } from "./LoginScreen";
 
-export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface) {
+export default function EquipmentList({
+  setScreenNumber,
+}: ScreenNumberInterface) {
   const [name, setName] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [idEquipment, setIdEquipment] = useState("");
-  const [nameEquipment, setNameEquipment] = useState("");
   const [rentTime, setRentTime] = useState("");
-  const [nameEquipmentError, setNameEquipmentError] = useState(false);
   const [rentTimeError, setRentTimeError] = useState(false);
-  const [nameEquipmentErrorText, setNameEquipmentErrorText] = useState("");
   const [rentTimeErrorText, setRentTimeErrorText] = useState("");
 
   function getList() {
     api
-      .get("/rent/list")
-      .then((res) => setName(res.data))
+      .get("/rent/listByClient/" + client.data.id)
+      .then((res) => {
+        console.log(client);
+        setName(res.data);
+      })
       .catch((res) => alert(res.response.data.message));
   }
 
@@ -52,7 +55,6 @@ export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface
     api
       .put("/rent/update", {
         id: idEquipment,
-        nameEquipment,
         rentTime,
       })
       .then(() => {
@@ -97,7 +99,8 @@ export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface
             Excluir
           </Button>
         </ListButtonDiv>
-        <p>Tempo de aluguel: {d.rentTime}</p>
+        <p>Data de Início: {d.dateStart}</p>
+        <p>Data de Fim: {d.dateEnd}</p>
         <Hr />
       </ItemDiv>
     </List>
@@ -108,26 +111,7 @@ export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface
       {isModalVisible ? (
         <ScreenDiv>
           <EditDiv>
-            <TitleEdit>Editar Equipamento</TitleEdit>
-            <TextField
-              style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                marginBottom: "3%",
-                marginTop: "1%",
-              }}
-              id="outlined-basic"
-              size="small"
-              onChange={(e) => {
-                setNameEquipmentError(false);
-                setNameEquipmentErrorText("");
-                setNameEquipment(e.target.value);
-              }}
-              error={nameEquipmentError}
-              helperText={nameEquipmentErrorText}
-              label="Nome do Equipamento"
-              variant="outlined"
-            />
+            <TitleEdit>Editar Aluguel</TitleEdit>
             <TextField
               style={{
                 marginLeft: "auto",
@@ -192,14 +176,14 @@ export default function EquipmentList({ setScreenNumber }: ScreenNumberInterface
           </EditDiv>
         </ScreenDiv>
       ) : null}
-      <Title>Lista de Alugueis</Title>
+      <Title>Meus Alugueis</Title>
       <FormDiv>{listItems}</FormDiv>
       <Button
         style={{
           marginLeft: "auto",
           marginRight: "auto",
           marginBottom: "5%",
-          position: "static"
+          position: "static",
         }}
         onClick={() => {
           setScreenNumber(1);
