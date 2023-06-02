@@ -28,7 +28,15 @@ export default function ClientCreation({
   const [error, setError] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [cpfError, setCpfError] = useState(false);
-  const [addressError, setAddressError] = useState(false);
+  const [zipCode, setZipCode] = useState("");
+  const [zipCodeError, setZipCodeError] = useState(false);
+  const [zipCodeErrorText, setZipCodeErrorText] = useState("");
+  const [number, setNumber] = useState("");
+  const [numberError, setNumberError] = useState(false);
+  const [numberErrorText, setNumberErrorText] = useState("");
+  const [complement, setComplement] = useState("");
+  const [complementError, setComplementError] = useState(false);
+  const [complementErrorText, setComplementErrorText] = useState("");
   const [birthDateError, setBirthDateError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -47,7 +55,9 @@ export default function ClientCreation({
       .post("/client/create", {
         name,
         phone,
-        address,
+        zipCode,
+        number,
+        complement,
         cpf,
         birthDate,
         email,
@@ -68,11 +78,7 @@ export default function ClientCreation({
       setPhoneError(true);
       setPhoneErrorText("Campo inválido");
     }
-    if (address === "") {
-      setError(true);
-      setAddressError(true);
-      setAddressErrorText("Campo inválido");
-    }
+
     if (cpf === "") {
       setError(true);
       setCpfError(true);
@@ -148,13 +154,49 @@ export default function ClientCreation({
             id="outlined-basic"
             size="medium"
             onChange={(e) => {
-              setAddressError(false);
-              setAddressErrorText("");
-              setAddress(e.target.value);
+              setZipCodeError(false);
+              setZipCodeErrorText("");
+              setZipCode(e.target.value);
             }}
-            error={addressError}
-            helperText={addressErrorText}
-            label="Endereço"
+            error={zipCodeError}
+            helperText={zipCodeErrorText}
+            label="CEP"
+            variant="outlined"
+          />
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setNumberError(false);
+              setNumberErrorText("");
+              setNumber(e.target.value);
+            }}
+            error={numberError}
+            helperText={numberErrorText}
+            label="Número"
+            variant="outlined"
+          />
+          <TextField
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "8%",
+            }}
+            id="outlined-basic"
+            size="medium"
+            onChange={(e) => {
+              setComplementError(false);
+              setComplementErrorText("");
+              setComplement(e.target.value);
+            }}
+            error={complementError}
+            helperText={complementErrorText}
+            label="Complemento"
             variant="outlined"
           />
           <TextField

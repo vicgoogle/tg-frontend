@@ -6,6 +6,7 @@ import {
   Hr,
   ImageDiv,
   Img,
+  Info,
   ItemDiv,
   List,
   ListButtonDiv,
@@ -116,9 +117,16 @@ export default function EquipmentList({
               Excluir
             </Button>
           </ListButtonDiv>
-          <p>Tipo do equipamento: {d.typeEquipment}</p>
-          <p>Preço: {d.priceEquipment}</p>
-          <p>Nome do Cliente: {d.nameClient}</p>
+          <Info>
+            <b>Tipo do equipamento:</b> {d.typeEquipment}
+          </Info>
+          <Info>
+            <b> Preço: </b> {d.priceEquipment}
+          </Info>
+          <Info>
+            <b> Descrição do Equipamento: </b>
+          </Info>
+          <Info>{d.description}</Info>
           <Hr />
         </ItemDiv>
       )}
@@ -147,7 +155,7 @@ export default function EquipmentList({
               }}
               error={nameEquipmentError}
               helperText={nameEquipmentErrorText}
-              label="ID do Equipamento"
+              label="Nome do Equipamento"
               variant="outlined"
             />
             <TextField

@@ -14,7 +14,7 @@ export const Option = styled.p`
 `;
 
 export const MainDiv = styled.div`
-  background-color: #0e0e0e;
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-dark.png");
   height: 140vh;
   width: 100%;
   align-items: center;
@@ -106,10 +106,6 @@ export const FormDiv = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   color: black;
-  background-color: white;
-  border-radius: 3%;
-  border-width: 2px;
-  border-style: dashed;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 6vh;
@@ -207,6 +203,13 @@ export const Title = styled.p`
   justify-content: center;
   display: flex;
   flex-direction: column;
+  color: white;
+`;
+
+export const Info = styled.p`
+  font-size: 16px;
+  font-weight: 20px;
+  width: 100%;
   color: white;
 `;
 

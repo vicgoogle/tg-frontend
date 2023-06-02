@@ -11,6 +11,7 @@ import EquipmentCreationScreen from "@/components/EquipmentCreationScreen";
 import RentCreationScreen from "@/components/RentCreationScreen";
 import HomeScreen from "@/components/HomeScreen";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import AddressList from "@/components/AddressListScreen";
 
 const darkTheme = createTheme({
   palette: {
@@ -31,6 +32,7 @@ export default function App() {
     <EquipmentCreationScreen setScreenNumber={setScreenNumber} />,
     <RentList setScreenNumber={setScreenNumber} />,
     <RentCreationScreen setScreenNumber={setScreenNumber} />,
+    <AddressList setScreenNumber={setScreenNumber} />,
   ];
 
   return (

@@ -51,7 +51,7 @@ export default function HomeScreen({ setScreenNumber }: ScreenNumberInterface) {
           setScreenNumber(6);
         }}
       >
-        Lista de Aluguéis
+        Meus Aluguéis
       </ButtonPurple>
       <ButtonPurple
         startIcon={<MenuBookIcon />}
@@ -60,6 +60,14 @@ export default function HomeScreen({ setScreenNumber }: ScreenNumberInterface) {
         }}
       >
         Cadastro de Alugueis
+      </ButtonPurple>
+      <ButtonPurple
+        startIcon={<MenuBookIcon />}
+        onClick={() => {
+          setScreenNumber(8);
+        }}
+      >
+        Lista de Endereços
       </ButtonPurple>
     </MainDiv>
   );

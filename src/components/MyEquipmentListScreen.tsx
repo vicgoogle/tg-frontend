@@ -67,7 +67,9 @@ export default function EquipmentList({
         alert(res.data.response);
         getList();
       })
-      .catch((res) => alert(res.response.data.message));
+      .catch((res) =>
+        alert("Equipamento removido da lista de equipamentos disponíveis")
+      );
   }
   function updateRent() {
     api
@@ -106,7 +108,7 @@ export default function EquipmentList({
               variant="outlined"
               size="small"
             >
-              Dar Baixa
+              Marcar como Indisponível
             </Button>
           )}
           <Button
@@ -140,7 +142,7 @@ export default function EquipmentList({
         </ListButtonDiv>
         <p>Tipo do equipamento: {d.typeEquipment}</p>
         <p>Preço: {d.priceEquipment}</p>
-        <p>Nome do Cliente: {d.nameClient}</p>
+        <p>Descrição do Equipamento: {d.description}</p>
         <Hr />
       </ItemDiv>
     </List>
@@ -168,7 +170,7 @@ export default function EquipmentList({
               }}
               error={nameEquipmentError}
               helperText={nameEquipmentErrorText}
-              label="ID do Equipamento"
+              label="Nome do Equipamento"
               variant="outlined"
             />
             <TextField
